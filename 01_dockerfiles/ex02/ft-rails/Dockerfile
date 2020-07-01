@@ -10,5 +10,4 @@ ONBUILD RUN bundle install
 ONBUILD RUN rake db:migrate
 ONBUILD RUN rake db:seed
 
-# How to build it?
 # docker build -t ft-rails:on-build .

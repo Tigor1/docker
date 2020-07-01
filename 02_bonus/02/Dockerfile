@@ -1,7 +1,5 @@
 FROM debian
 
-MAINTAINER vbrazhni <vbrazhni@student.unit.ua>
-
 RUN apt-get update && apt-get upgrade -y && apt-get install -y wget default-jre
 
 WORKDIR minecraft
@@ -14,8 +12,5 @@ EXPOSE 25565
 
 ENTRYPOINT java -Xmx1024M -Xms1024M -jar server.jar
 
-# How to build it?
 # docker build -t a02 .
-
-# How to run it?
 # docker run --rm -d -p 25565:25565 a02
