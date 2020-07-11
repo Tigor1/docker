@@ -1,16 +1,12 @@
-FROM debian
-
-RUN apt-get update && apt-get upgrade -y && apt-get install -y wget default-jre
-
-WORKDIR minecraft
-
-RUN wget https://launcher.mojang.com/mc/game/1.13/server/d0caafb8438ebd206f99930cfaecfa6c9a13dca0/server.jar
-
-RUN echo 'eula=true' > eula.txt
-
+FROM openjdk:8
+RUN apt-get update && apt-get upgrade -y && apt-get install wget
+RUN mkdir /server
+COPY ./settings/* /server/
+WORKDIR /server
+RUN wget https://launcher.mojang.com/v1/objects/bb2b6b1aefcd70dfd1892149ac3a215f6c636b07/server.jar
+RUN chmod 777 server.jar
+ENTRYPOINT java -Xmx1024M -Xms1024M -jar server.jar nogui
 EXPOSE 25565
 
-ENTRYPOINT java -Xmx1024M -Xms1024M -jar server.jar
-
-# docker build -t a02 .
-# docker run --rm -d -p 25565:25565 a02
+#docker build -t minecraft-server .
+#docker run -ti -p 25565:25565 -v serverfiles:/server minecraft-server
