@@ -1,4 +1,4 @@
-docker run -dit -v ~/:/root -p 3000:3000 --name Abathur python:2-slim
+docker run -dt -v ~/:/root -p 3000:3000 --name Abathur python:2-slim
 docker exec Abathur pip install Flask
 docker exec Abathur pip install virtualenv
 docker exec Abathur python2 -m virtualenv venv
